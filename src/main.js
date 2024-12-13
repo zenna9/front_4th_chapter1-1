@@ -7,8 +7,8 @@ const MainPage = () => `
 
       <nav class="bg-white shadow-md p-2 sticky top-14">
         <ul class="flex justify-around">
-          <li><a href="./main.html" class="text-blue-600">홈</a></li>
-          <li><a href="./profile.html" class="text-gray-600">프로필</a></li>
+          <li><a href="/" class="text-blue-600">홈</a></li>
+          <li><a href="/profile" class="text-gray-600">프로필</a></li>
           <li><a href="#" class="text-gray-600">로그아웃</a></li>
         </ul>
       </nav>
@@ -119,7 +119,7 @@ const ErrorPage = () => `
       <p class="text-gray-600 mb-8">
         요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.
       </p>
-      <a href="./main.html" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">
+      <a href="/" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">
         홈으로 돌아가기
       </a>
     </div>
@@ -160,8 +160,8 @@ const ProfilePage = () => `
 
         <nav class="bg-white shadow-md p-2 sticky top-14">
           <ul class="flex justify-around">
-            <li><a href="./main.html" class="text-gray-600">홈</a></li>
-            <li><a href="#" class="text-blue-600">프로필</a></li>
+            <li><a href="/" class="text-gray-600">홈</a></li>
+            <li><a href="/profile" class="text-blue-600">프로필</a></li>
             <li><a href="#" class="text-gray-600">로그아웃</a></li>
           </ul>
         </nav>
