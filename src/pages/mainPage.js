@@ -1,6 +1,8 @@
-export default function MainPage() {
-  return `
-  <div class="bg-gray-100 min-h-screen flex justify-center">
+export default function mainPage() {
+  const container = document.createElement("div");
+  container.className = "bg-gray-100 min-h-screen flex justify-center";
+
+  container.innerHTML = `
     <div class="max-w-md w-full">
       <header class="bg-blue-600 text-white p-4 sticky top-0">
         <h1 class="text-2xl font-bold">항해플러스</h1>
@@ -108,6 +110,13 @@ export default function MainPage() {
         <p>&copy; 2024 항해플러스. All rights reserved.</p>
       </footer>
     </div>
-  </div>
-`;
+  `;
+
+  container.querySelector("#logout").addEventListener("click", function (e) {
+    e.preventDefault();
+    localStorage.removeItem("user");
+    alert("로그아웃 되었습니다.");
+    window.location.href = "/login";
+  });
+  return container;
 }

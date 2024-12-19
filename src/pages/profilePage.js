@@ -1,7 +1,7 @@
-export default function ProfilePage() {
-  return `
-    <div id="root">
-      <div class="bg-gray-100 min-h-screen flex justify-center">
+export default function profilePage() {
+  const container = document.createElement("div");
+  container.className = "bg-gray-100 min-h-screen flex justify-center";
+  container.innerHTML = `
         <div class="max-w-md w-full">
           <header class="bg-blue-600 text-white p-4 sticky top-0">
             <h1 class="text-2xl font-bold">항해플러스</h1>
@@ -78,7 +78,6 @@ export default function ProfilePage() {
             <p>&copy; 2024 항해플러스. All rights reserved.</p>
           </footer>
         </div>
-      </div>
-    </div>
     `;
+  return container;
 }

@@ -1,7 +1,7 @@
-import { loginHTML, loginMethod } from "./pages/loginPage";
-import MainPage from "./pages/mainPage";
-import ProfilePage from "./pages/profilePage";
-import ErrorPage from "./pages/errorPage";
+import loginPage from "./pages/loginPage";
+import mainPage from "./pages/mainPage";
+import profilePage from "./pages/profilePage";
+import errorPage from "./pages/errorPage";
 
 //url변경
 export function navigateTo(url) {
@@ -13,23 +13,26 @@ export function navigateTo(url) {
 function renderPage() {
   const route = window.location.pathname;
   const rootDiv = document.getElementById("root"); // root div 가져오기
+  let component;
   switch (route) {
     case "/":
-      rootDiv.innerHTML = MainPage(); // MainPage 렌더링
+      component = mainPage();
+      // rootDiv.innerHTML = MainPage(); // MainPage 렌더링
       break;
     case "/login":
-      rootDiv.innerHTML = loginHTML; // LoginPage 렌더링
-      loginMethod();
+      component = loginPage();
       break;
     case "/profile":
       if (!chkLogin()) {
         return;
       }
-      rootDiv.innerHTML = ProfilePage(); // ProfilePage 렌더링
+      rootDiv.innerHTML = profilePage(); // ProfilePage 렌더링
       break;
     default:
-      rootDiv.innerHTML = ErrorPage(); // 잘못된 경로 처리
+      component = errorPage();
   }
+  rootDiv.innerHTML = ""; // 기존 내용을 비우기
+  rootDiv.appendChild(component); // LoginPage 추가
 }
 
 function chkLogin() {
