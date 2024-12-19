@@ -26,7 +26,7 @@ function renderPage() {
       if (!chkLogin()) {
         return;
       }
-      rootDiv.innerHTML = profilePage(); // ProfilePage 렌더링
+      component = profilePage(); // ProfilePage 렌더링
       break;
     default:
       component = errorPage();
@@ -36,7 +36,7 @@ function renderPage() {
 }
 
 function chkLogin() {
-  if (!window.localStorage.getItem("email")) {
+  if (!window.localStorage.getItem("user")) {
     // 로그인이 되지 않았다면
     navigateTo("/login");
     return false;

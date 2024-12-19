@@ -1,4 +1,5 @@
 export default function profilePage() {
+  let userInf = JSON.parse(window.localStorage.getItem("user"));
   const container = document.createElement("div");
   container.className = "bg-gray-100 min-h-screen flex justify-center";
   container.innerHTML = `
@@ -20,7 +21,7 @@ export default function profilePage() {
               <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
                 내 프로필
               </h2>
-              <form>
+              <form id="profile-form">
                 <div class="mb-4">
                   <label
                     for="username"
@@ -31,7 +32,7 @@ export default function profilePage() {
                     type="text"
                     id="username"
                     name="username"
-                    value="홍길동"
+                    value="${userInf["username"]}"
                     class="w-full p-2 border rounded"
                   />
                 </div>
@@ -45,7 +46,7 @@ export default function profilePage() {
                     type="email"
                     id="email"
                     name="email"
-                    value="hong@example.com"
+                    value="${userInf["email"]}"
                     class="w-full p-2 border rounded"
                   />
                 </div>
@@ -60,9 +61,7 @@ export default function profilePage() {
                     name="bio"
                     rows="4"
                     class="w-full p-2 border rounded"
-                  >
-    안녕하세요, 항해플러스에서 열심히 공부하고 있는 홍길동입니다.</textarea
-                  >
+                  >${userInf["bio"]}</textarea>
                 </div>
                 <button
                   type="submit"
@@ -79,5 +78,15 @@ export default function profilePage() {
           </footer>
         </div>
     `;
+  container.querySelector("#profile-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    let userData = {
+      username: document.getElementById("username").value,
+      email: document.getElementById("email").value,
+      bio: document.getElementById("bio").value,
+    };
+
+    localStorage.setItem("user", JSON.stringify(userData));
+  });
   return container;
 }
