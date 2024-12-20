@@ -1,9 +1,12 @@
+import naviPage from "./naviPage";
+
 export default function mainPage() {
   const container = document.createElement("div");
   container.className = "bg-gray-100 min-h-screen flex justify-center";
 
   container.innerHTML = `
     <div class="max-w-md w-full">
+      <!-- naviPage -->
       <header class="bg-blue-600 text-white p-4 sticky top-0">
         <h1 class="text-2xl font-bold">항해플러스</h1>
       </header>
@@ -111,12 +114,14 @@ export default function mainPage() {
       </footer>
     </div>
   `;
+  const header = naviPage();
+  container.querySelector(".max-w-md").prepend(header);
 
-  container.querySelector("#logout").addEventListener("click", function (e) {
-    e.preventDefault();
-    localStorage.removeItem("user");
-    alert("로그아웃 되었습니다.");
-    window.location.href = "/login";
-  });
+  // container.querySelector("#logout").addEventListener("click", function (e) {
+  //   e.preventDefault();
+  //   localStorage.removeItem("user");
+  //   alert("로그아웃 되었습니다.");
+  //   window.location.href = "/login";
+  // });
   return container;
 }

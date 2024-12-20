@@ -43,6 +43,14 @@ describe("기본과제 테스트", () => {
       expect(headers[0].innerHTML.includes("항해플러스")).toBe(true);
     });
 
+    it('채은 : 헤더가 도대체 왜 있지?', () => {
+      goTo("/login");
+      console.log('뱉어봐라 돔 시벌~', document.body.innerHTML);
+      
+      const headers = document.querySelectorAll('header');
+      expect(headers.length).toBe(0); // 초기 DOM에 header가 없음을 기대
+    });
+
     it('"/login" 경로로 접근하면 로그인 페이지가 렌더링된다', () => {
       goTo("/login");
       const submitButtons = [
@@ -76,6 +84,8 @@ describe("기본과제 테스트", () => {
       goTo("/login");
 
       const loginForm = document.getElementById("login-form");
+      console.log('loginfo', loginForm);
+      
 
       await user.type(document.getElementById("username"), "testuser");
 
@@ -83,6 +93,8 @@ describe("기본과제 테스트", () => {
         new SubmitEvent("submit", { bubbles: true, cancelable: true }),
       );
 
+      console.log('user',localStorage.getItem("user"));
+      
       expect(localStorage.getItem("user")).toEqual(
         `{"username":"testuser","email":"","bio":""}`,
       );
@@ -122,12 +134,13 @@ describe("기본과제 테스트", () => {
     it("프로필 수정 기능이 동작한다", () => {
       const profileForm = document.getElementById("profile-form");
       const bioInput = document.getElementById("bio");
-
+      console.log('user', localStorage.getItem("user"));
       bioInput.value = "Updated bio";
       profileForm.dispatchEvent(
         new SubmitEvent("submit", { bubbles: true, cancelable: true }),
       );
-
+      console.log('user', localStorage.getItem("user"));
+      
       expect(localStorage.getItem("user")).toEqual(
         `{"username":"testuser","email":"","bio":"Updated bio"}`,
       );
